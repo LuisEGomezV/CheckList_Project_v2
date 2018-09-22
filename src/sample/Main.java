@@ -1,5 +1,6 @@
 package sample;
 
+import com.CongresoCEUAA.FileSystemTEST;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,8 @@ public class Main extends Application {
     private double yOffset;
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         //Metodos para mover la aplicaion
         //-----------------------------------------------------
@@ -37,10 +40,12 @@ public class Main extends Application {
         primaryStage.setTitle("Check List");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        FileSystemTEST.mainTest();
     }
 
 
     public static void main(String[] args) {
         launch(args);
+
     }
 }

@@ -17,6 +17,8 @@ public class FileSystemTEST
     public static void mainTest()
     {
 
+        //Ejemplo de Collection data para especificar como se deben leer los datos de excel
+
         CollectionData collectionData = new CollectionData();
         collectionData.collectionType = CollectionType.AllSheets;
         collectionData.IDsColumn = 0;
@@ -26,27 +28,37 @@ public class FileSystemTEST
         collectionData.dataStartRow = 2;
 
 
+        //Ejemplo de lectura de excel para llenar la lista de asistentes
         AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.ghkh", collectionData); //Se corrige la extension automaticamente
 
 
         System.out.println("Attendants: " + atgroup.Count());
 
 
+        //Se crea un "congreso" con la lista de asistentes
         Congress congress = new Congress(atgroup);
 
+        //Se agregan eventos (conferencias, talleres, etc.)
         Event event1  = congress.AddEvent("Conferencia 1");
         Event event2  = congress.AddEvent("Conferencia 2");
 
+
+        //Se agrega asistencia por medio de ID y con el evento como parametro
         atgroup.GetAttendant(239935).AddAttendance(event1);
         atgroup.GetAttendant(234606).AddAttendance(event1);
         atgroup.GetAttendant(239935).AddAttendance(event2);
         atgroup.GetAttendant(234606).AddAttendance(event2);
 
+
+        //Se guarda el archivo de congreso para reanudarlo posteriormente
         SessionFileSystem.SaveSession(congress,"/Users/LuisGomez/Desktop/Congreso2018.con");
 
 
+        //Se carga el archivo de congreso
         Congress loadedCongress = SessionFileSystem.LoadSession("/Users/LuisGomez/Desktop/Congreso2018.con");
 
+
+        //Ejemplo de ReportData para especificar como se debe hacer el reporte
         ReportData reportData = new ReportData();
         reportData.sheetAsGroup = false;
         reportData.IDsColumn = 0;
@@ -54,7 +66,7 @@ public class FileSystemTEST
         reportData.dataStartRow = 2;
         reportData.skipWhenZeroAttendance = true;
 
-
+        //Se genera el reporte
         ExcelWriter.GenerateReport("/Users/luisgomez/Desktop/Congreso/TestReport.xlsx",congress,reportData);
 
 
