@@ -31,6 +31,12 @@ public class FileSystemTEST
         //Ejemplo de lectura de excel para llenar la lista de asistentes
         AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.ghkh", collectionData); //Se corrige la extension automaticamente
 
+        if(atgroup == null) // Si no se generó la lista, retorna null
+        {
+            System.out.println("Lista de asistentes no generada " );
+            return;
+        }
+
 
         System.out.println("Attendants: " + atgroup.Count());
 

@@ -10,6 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ExcelReader extends ExcelFileSystem
@@ -44,7 +45,16 @@ public class ExcelReader extends ExcelFileSystem
             System.out.println("Rows: " +  sheet.getPhysicalNumberOfRows());*/
 
         }
+        catch (FileNotFoundException i)
+        {
+            System.out.println("Archivo no encontrado");
+        }
         catch (IOException i)
+        {
+            i.printStackTrace();
+
+        }
+        catch (Exception i)
         {
             i.printStackTrace();
 
