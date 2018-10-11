@@ -19,6 +19,8 @@ public class Attendant implements java.io.Serializable
         return groupID;
     }
 
+
+
     public boolean AddAttendance(Event event)
     {
         for(Attendance att: attendanceList)

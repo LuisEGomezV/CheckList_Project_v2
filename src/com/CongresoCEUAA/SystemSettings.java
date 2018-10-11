@@ -11,4 +11,6 @@ public class SystemSettings implements java.io.Serializable
     public void setSessionsPath(String sessionsPath) {
         this.sessionsPath = sessionsPath;
     }
+
+
 }

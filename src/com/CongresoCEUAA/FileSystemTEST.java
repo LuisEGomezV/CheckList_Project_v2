@@ -16,6 +16,7 @@ public class FileSystemTEST
 
     public static void mainTest()
     {
+        //TUTORIAL
 
         //Ejemplo de Collection data para especificar como se deben leer los datos de excel
 
@@ -52,6 +53,7 @@ public class FileSystemTEST
         //Se agrega asistencia por medio de ID y con el evento como parametro
         atgroup.GetAttendant(239935).AddAttendance(event1);
         atgroup.GetAttendant(234606).AddAttendance(event1);
+
         atgroup.GetAttendant(239935).AddAttendance(event2);
         atgroup.GetAttendant(234606).AddAttendance(event2);
 
