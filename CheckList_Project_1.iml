@@ -8,7 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="jfoenix" level="project" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" />
@@ -23,7 +23,7 @@
         <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" />
@@ -38,7 +38,7 @@
         <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0" />
@@ -50,7 +50,7 @@
         <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/ooxml-lib" />
@@ -60,7 +60,7 @@
         <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/ooxml-lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/lib" />
@@ -68,6 +68,62 @@
         <JAVADOC />
         <SOURCES />
         <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
+        </SOURCES>
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/POI" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/POI" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/ooxml-lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/ooxml-lib" recursive="false" />
       </library>
     </orderEntry>
   </component>
