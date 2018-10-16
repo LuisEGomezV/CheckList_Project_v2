@@ -30,7 +30,7 @@ public class FileSystemTEST
 
 
         //Ejemplo de lectura de excel para llenar la lista de asistentes
-        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("C:/Users/Chuy/Desktop/Congreso/TestList.ghkh", collectionData); //Se corrige la extension automaticamente
+        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("C:/Users/Ana Karen Hernandez/Desktop/TestList.xlsx", collectionData); //Se corrige la extension automaticamente
 
         if(atgroup == null) // Si no se generó la lista, retorna null
         {
@@ -59,11 +59,11 @@ public class FileSystemTEST
 
 
         //Se guarda el archivo de congreso para reanudarlo posteriormente
-        SessionFileSystem.SaveSession(congress,"C:/Users/Chuy/Desktop/Congreso2018.con");
+        SessionFileSystem.SaveSession(congress,"C:/Users/Ana Karen Hernandez/Desktop/Congreso2018.con");
 
 
         //Se carga el archivo de congreso
-        Congress loadedCongress = SessionFileSystem.LoadSession("C:/Users/Chuy/Desktop/Congreso2018.con");
+        Congress loadedCongress = SessionFileSystem.LoadSession("C:/Users/Ana Karen Hernandez/Desktop/Congreso2018.con");
 
 
         //Ejemplo de ReportData para especificar como se debe hacer el reporte
@@ -75,7 +75,7 @@ public class FileSystemTEST
         reportData.skipWhenZeroAttendance = true;
 
         //Se genera el reporte
-        ExcelWriter.GenerateReport("C:/Users/Chuy/Desktop/Congreso/TestReport.xlsx",congress,reportData);
+        ExcelWriter.GenerateReport("C:/Users/Ana Karen Hernandez/Desktop/TestReport.xlsx",congress,reportData);
 
 
 

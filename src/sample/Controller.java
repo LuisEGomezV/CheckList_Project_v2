@@ -1,8 +1,13 @@
 package sample;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -24,15 +29,72 @@ public class Controller {
     @FXML private JFXTextField reportTextField1;
     @FXML private JFXTextField dataBaseTextField2;
     @FXML private JFXTextField reportFileTextField2;
+    @FXML private JFXTextField conferenceListTextField;
+    @FXML private JFXTextField conferenceListSettingsTextField;
+    @FXML private JFXComboBox<String> comBoxConference;
+    @FXML private JFXComboBox<String> comoBoxCheckList;
+    @FXML private JFXComboBox<String> comboBoxSettings;
+    @FXML private Label limitConferenceLabel;
+    @FXML private Label limitConferenceLabelSettings;
+    @FXML private Label nullValueLabel;
 
     String dataBasePath = new String();
     String reportPath = new String();
+    String llenarLista[]  = new String[10];
+    String llenarListaaux[]  = new String[10];
+    String vacia[] = {" "," "," "," "," "," "," "," "," "," "};
+    int i;
 
+    /*
+    ObservableList<String> lista = FXCollections.observableArrayList(
+            "conferencia1",
+                    "conferencia2",
+                    "conferencia3"
+    );
+    */
+
+    //ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
 
     //metodo para cerrar la apicacion
     public void onExitButtonClicked(MouseEvent event){
         Platform.exit();
         System.exit(0);
+    }
+
+    public void onAddButtonClicked(MouseEvent event){
+        if(i < 10){
+            llenarLista[i] = conferenceListTextField.getText();
+            llenarListaaux[i] = conferenceListTextField.getText();
+            if(llenarLista[i] == ""){
+                nullValueLabel.setVisible(true);
+            }
+            else{
+                ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
+                comBoxConference.setItems(lista);
+                comoBoxCheckList.setItems(lista);
+                comboBoxSettings.setItems(lista);
+                this.conferenceListTextField.setText("");
+                i ++;
+            }
+        }
+        else{
+            limitConferenceLabel.setVisible(true);
+        }
+    }
+
+    public void onAddButtonSettingsClicked(MouseEvent event){
+        if(i < 10){
+            llenarLista[i] = conferenceListSettingsTextField.getText();
+            llenarListaaux[i] = conferenceListSettingsTextField.getText();
+            ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
+            comoBoxCheckList.setItems(lista);
+            comboBoxSettings.setItems(lista);
+            this.conferenceListSettingsTextField.setText("");
+            i ++;
+        }
+        else{
+            limitConferenceLabelSettings.setVisible(true);
+        }
     }
 
     public void ondataBaseFileClicked(MouseEvent event){
@@ -88,6 +150,7 @@ public class Controller {
     }
     //metodo para el boton de nuevo
     public void onNewButtonCliked(MouseEvent event){
+        i = 0;
         startPanel.setVisible(false);
         newEntryPanel.setVisible(true);
         resumePanel.setVisible(false);
@@ -98,6 +161,15 @@ public class Controller {
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
+        limitConferenceLabel.setVisible(false);
+        for(int j = 0 ; j < 10 ; j ++){
+            llenarLista[j] = " ";
+            //limitConferenceLabel.setVisible(true);
+        }
+        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
+        comBoxConference.setItems(lista);
+        comoBoxCheckList.setItems(lista);
+        comboBoxSettings.setItems(lista);
     }
 
     //metodo para el boton de resumir
@@ -118,6 +190,12 @@ public class Controller {
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
+        limitConferenceLabel.setVisible(false);
+        limitConferenceLabelSettings.setVisible(false);
+        fileReportPanel.setVisible(false);
+        listEditPanel.setVisible(false);
+        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
+        comBoxConference.setItems(lista);
     }
 
     public void onHomeButtonClicked(MouseEvent event){
@@ -125,6 +203,8 @@ public class Controller {
         resumePanel.setVisible(false);
         startPanel.setVisible(true);
         settingsPanel.setVisible(false);
+        fileReportPanel.setVisible(false);
+        listEditPanel.setVisible(false);
     }
 
     public void onFileEditClicked(MouseEvent event){
