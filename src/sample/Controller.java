@@ -1,5 +1,7 @@
 package sample;
 
+import com.CongresoCEUAA.Congress;
+import com.CongresoCEUAA.FileSystemTEST;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -61,8 +63,25 @@ public class Controller {
         System.exit(0);
     }
 
+    Congress GetCurrentCongress()
+    {
+        try
+        {
+            if(FileSystemTEST.currentCongress == null)
+                System.out.println("No current congress");
+
+            return FileSystemTEST.currentCongress;
+        }
+        catch (Exception e)
+        {
+            System.out.println("No current congress");
+        }
+
+        return null;
+    }
+
     public void onAddButtonClicked(MouseEvent event){
-        if(i < 10){
+        /*if(i < 10){
             llenarLista[i] = conferenceListTextField.getText();
             llenarListaaux[i] = conferenceListTextField.getText();
             if(llenarLista[i] == ""){
@@ -73,17 +92,48 @@ public class Controller {
                 comBoxConference.setItems(lista);
                 comoBoxCheckList.setItems(lista);
                 comboBoxSettings.setItems(lista);
+
                 this.conferenceListTextField.setText("");
                 i ++;
             }
         }
         else{
             limitConferenceLabel.setVisible(true);
-        }
+        }*/
+
+        AddEvent(conferenceListTextField);
+
+    }
+
+    void AddEvent(JFXTextField field)
+    {
+        String name = field.getText();
+        System.out.println("num: " + name.length());
+        System.out.println("text: " + name);
+        if(name.length() <= 0 || name == "" || name == " ")
+            return;
+
+        GetCurrentCongress().AddEvent(name);
+        field.setText("");
+
+        UpdateComboBoxes();
+    }
+
+    void UpdateComboBoxes()
+    {
+        ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
+        comBoxConference.setItems(list);
+        comoBoxCheckList.setItems(list);
+        comboBoxSettings.setItems(list);
+    }
+
+    void RemoveEvent(JFXTextField field)
+    {
+
     }
 
     public void onAddButtonSettingsClicked(MouseEvent event){
-        if(i < 10){
+        /*if(i < 10){
             llenarLista[i] = conferenceListSettingsTextField.getText();
             llenarListaaux[i] = conferenceListSettingsTextField.getText();
             ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
@@ -94,7 +144,14 @@ public class Controller {
         }
         else{
             limitConferenceLabelSettings.setVisible(true);
-        }
+        }*/
+
+        AddEvent(conferenceListSettingsTextField);
+    }
+
+    public void onEliminarButtonClicked(MouseEvent event)
+    {
+        System.out.println("asdasd");
     }
 
     public void ondataBaseFileClicked(MouseEvent event){
