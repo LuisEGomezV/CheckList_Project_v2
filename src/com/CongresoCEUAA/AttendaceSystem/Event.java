@@ -14,6 +14,12 @@ public class Event implements java.io.Serializable
 
     public LocalTime getTime () { return time;}
 
+    public void setDate (LocalDate date) { this.date =date;}
+
+    public void setTime (LocalTime time) { this.time =time;}
+
+
+
     public String getName() {
         return name;
     }
@@ -27,7 +33,7 @@ public class Event implements java.io.Serializable
     }
 
 
-    public Event(Byte index, String name, LocalDate date, LocalTime time)
+    public Event(Byte index, String name, LocalTime time, LocalDate date)
     {
         this.index = index;
         this.name = name;

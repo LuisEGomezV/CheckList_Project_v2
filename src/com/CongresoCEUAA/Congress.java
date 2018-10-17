@@ -4,6 +4,8 @@ import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.AttendaceSystem.Event;
 import org.apache.poi.ss.formula.functions.Even;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
@@ -28,6 +30,7 @@ public class Congress implements java.io.Serializable
    }
 
 
+
    public AttendantsList getAttendantsList() {
       return attendants;
    }
@@ -36,12 +39,13 @@ public class Congress implements java.io.Serializable
       this.attendants = attendants;
    }
 
-   public Event AddEvent(String name /*Parametros de los eventos*/)
+   public Event AddEvent(String name, LocalDate date, LocalTime time)
    {
+
        byte newIndex = currentEventIndex;
        currentEventIndex++;
 
-       Event event = new Event(newIndex, name);
+       Event event = new Event(newIndex, name, time, date);
        events.put(newIndex, event);
 
        return event;
