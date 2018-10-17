@@ -47,15 +47,6 @@ public class Controller {
     String vacia[] = {" "," "," "," "," "," "," "," "," "," "};
     int i;
 
-    /*
-    ObservableList<String> lista = FXCollections.observableArrayList(
-            "conferencia1",
-                    "conferencia2",
-                    "conferencia3"
-    );
-    */
-
-    //ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
 
     //metodo para cerrar la apicacion
     public void onExitButtonClicked(MouseEvent event){
@@ -81,25 +72,6 @@ public class Controller {
     }
 
     public void onAddButtonClicked(MouseEvent event){
-        /*if(i < 10){
-            llenarLista[i] = conferenceListTextField.getText();
-            llenarListaaux[i] = conferenceListTextField.getText();
-            if(llenarLista[i] == ""){
-                nullValueLabel.setVisible(true);
-            }
-            else{
-                ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
-                comBoxConference.setItems(lista);
-                comoBoxCheckList.setItems(lista);
-                comboBoxSettings.setItems(lista);
-
-                this.conferenceListTextField.setText("");
-                i ++;
-            }
-        }
-        else{
-            limitConferenceLabel.setVisible(true);
-        }*/
 
         AddEvent(conferenceListTextField);
 
@@ -133,18 +105,7 @@ public class Controller {
     }
 
     public void onAddButtonSettingsClicked(MouseEvent event){
-        /*if(i < 10){
-            llenarLista[i] = conferenceListSettingsTextField.getText();
-            llenarListaaux[i] = conferenceListSettingsTextField.getText();
-            ObservableList<String> lista = FXCollections.observableArrayList(llenarLista);
-            comoBoxCheckList.setItems(lista);
-            comboBoxSettings.setItems(lista);
-            this.conferenceListSettingsTextField.setText("");
-            i ++;
-        }
-        else{
-            limitConferenceLabelSettings.setVisible(true);
-        }*/
+
 
         AddEvent(conferenceListSettingsTextField);
     }

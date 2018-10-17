@@ -11,11 +11,9 @@ import java.util.TreeMap;
 
 public class Congress implements java.io.Serializable
 {
-
    private String congressName;
 
    private AttendantsList attendants;
-
 
    private TreeMap<Byte, Event> events;
 
