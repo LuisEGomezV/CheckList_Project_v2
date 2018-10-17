@@ -95,7 +95,11 @@ public class Controller {
         {
 
             if(GetCurrentCongress() == null)
+            {
+                System.out.println("No current congress");
                 return;
+            }
+
 
             ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
             comBoxConference.setItems(list);
