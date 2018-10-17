@@ -49,7 +49,6 @@ public class Congress implements java.io.Serializable
 
    public boolean RemoveEvent(String name)
    {
-
        for(Map.Entry<Byte, Event> eventEntry: EventsSet())
        {
             if(eventEntry.getValue().getName() == name)
@@ -57,10 +56,7 @@ public class Congress implements java.io.Serializable
                 events.remove(eventEntry.getKey());
                 System.out.println("Deleted: " + name);
                 return true;
-
             }
-
-
        }
        return false;
    }

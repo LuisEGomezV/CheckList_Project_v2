@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="startPanel" layoutX="-4.0" layoutY="121.0" prefHeight="489.0" prefWidth="800.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="startPanel" layoutX="-4.0" layoutY="121.0" prefHeight="489.0" prefWidth="800.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="734.0" layoutY="534.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -192,7 +192,8 @@
                         <Image url="@images/icon_Home.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="614.0" layoutY="68.0" mnemonicParsing="false" onMouseClicked="#onGenerateReportButton" prefHeight="43.0" prefWidth="109.0" text="Generar Reporte" textFill="#07106e" />
+                  <Button layoutX="14.0" layoutY="63.0" mnemonicParsing="false" onMouseClicked="#onGenerateReportButton" prefHeight="36.0" prefWidth="129.0" text="Generar Reporte" textFill="#07106e" />
+                  <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onGuardarButtonClicked" prefHeight="35.0" prefWidth="129.0" text="Guardar" textFill="#07106e" />
                </children>
             </AnchorPane>
             <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="744.0" layoutY="544.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0">
@@ -297,6 +298,11 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="268.0" prefWidth="394.0" />
+      <AnchorPane fx:id="generarReportePanel" prefHeight="268.0" prefWidth="394.0" style="-fx-background-color: #babec6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="guardarPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTextField />
+            <JFXTextField layoutX="52.0" layoutY="108.0" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

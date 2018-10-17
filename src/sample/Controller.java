@@ -27,6 +27,8 @@ public class Controller {
     @FXML private AnchorPane fileReportPanel;
     @FXML private AnchorPane listEditPanel;
     @FXML private AnchorPane settingsPanel;
+    @FXML private AnchorPane generarReportePanel;
+    @FXML private AnchorPane guardarPanel;
     @FXML private JFXTextField dataBaseTextField1;
     @FXML private JFXTextField reportTextField1;
     @FXML private JFXTextField dataBaseTextField2;
@@ -48,7 +50,22 @@ public class Controller {
         System.exit(0);
     }
 
+    public void onGuardarButtonClicked(MouseEvent event){
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(true);
+        startPanel.setVisible(false);
+        newEntryPanel.setVisible(false);
+        resumePanel.setVisible(false);
+        settingsPanel.setVisible(false);
+    }
     public void onGenerateReportButton(MouseEvent event){
+        generarReportePanel.setVisible(true);
+        guardarPanel.setVisible(false);
+        startPanel.setVisible(false);
+        newEntryPanel.setVisible(false);
+        resumePanel.setVisible(false);
+        settingsPanel.setVisible(false);
+        /*
         JFileChooser generateReport = new JFileChooser();
         generateReport.showSaveDialog(null);
         File fileReport = new File(generateReport.getSelectedFile()+".xlsx");
@@ -57,6 +74,7 @@ public class Controller {
         }catch(Exception e) {
 
         }
+        */
     }
 
     Congress GetCurrentCongress()
@@ -199,6 +217,8 @@ public class Controller {
         settingsPanel.setVisible(false);
         dataBaseTextField1.setDisable(true);
         reportTextField1.setDisable(true);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
@@ -212,6 +232,8 @@ public class Controller {
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
     }
 
     //metodo para el boton de continuar
@@ -220,6 +242,8 @@ public class Controller {
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
@@ -260,5 +284,7 @@ public class Controller {
         resumePanel.setVisible(false);
         dataBaseTextField2.setDisable(true);
         reportFileTextField2.setDisable(true);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
     }
 }
