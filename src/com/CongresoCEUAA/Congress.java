@@ -48,6 +48,7 @@ public class Congress implements java.io.Serializable
        Event event = new Event(newIndex, name, time, date);
        events.put(newIndex, event);
 
+
        return event;
    }
 

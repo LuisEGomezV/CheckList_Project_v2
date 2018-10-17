@@ -106,10 +106,17 @@ public class Controller {
         if(name.length() <= 0 || name == "" || name == " ")
             return;
 
-        GetCurrentCongress().AddEvent(name);
+        GetCurrentCongress().AddEvent(name,null,null);
         field.setText("");
 
         UpdateComboBoxes();
+    }
+
+    void AddAttendance()
+    {
+        string idString = comoBoxCheckList.getValue();
+
+        Integer id;
     }
 
     void UpdateComboBoxes()

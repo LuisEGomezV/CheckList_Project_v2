@@ -48,8 +48,8 @@ public class FileSystemTEST
         Congress congress = new Congress(atgroup);
 
         //Se agregan eventos (conferencias, talleres, etc.)
-        Event event1  = congress.AddEvent("Conferencia 1");
-        Event event2  = congress.AddEvent("Conferencia 2");
+        Event event1  = congress.AddEvent("Conferencia 1", null, null);
+        Event event2  = congress.AddEvent("Conferencia 2", null, null);
 
 
         currentCongress = congress;
