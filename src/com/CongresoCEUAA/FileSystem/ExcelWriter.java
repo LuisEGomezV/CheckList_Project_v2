@@ -153,9 +153,6 @@ public class ExcelWriter extends ExcelFileSystem
                 row.getCell(reportData.groupColumn, Row.MissingCellPolicy.CREATE_NULL_AS_BLANK).setCellValue(attendantsList.GetGroup(attendant.getGroupID()));
             }
 
-
-
-
             ListIterator<Attendance> allAttendance = attendant.GetAttendance();
 
             while(allAttendance.hasNext())
