@@ -36,15 +36,9 @@ public class Controller {
     @FXML private JFXComboBox<String> comBoxConference;
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
-    @FXML private Label limitConferenceLabel;
-    @FXML private Label limitConferenceLabelSettings;
-    @FXML private Label nullValueLabel;
 
     String dataBasePath = new String();
     String reportPath = new String();
-    String llenarLista[]  = new String[10];
-    String llenarListaaux[]  = new String[10];
-    String vacia[] = {" "," "," "," "," "," "," "," "," "," "};
     int i;
 
 
@@ -52,6 +46,17 @@ public class Controller {
     public void onExitButtonClicked(MouseEvent event){
         Platform.exit();
         System.exit(0);
+    }
+
+    public void onGenerateReportButton(MouseEvent event){
+        JFileChooser generateReport = new JFileChooser();
+        generateReport.showSaveDialog(null);
+        File fileReport = new File(generateReport.getSelectedFile()+".xlsx");
+        try {
+            BufferedWriter salida1 = new BufferedWriter(new FileWriter(fileReport));
+        }catch(Exception e) {
+
+        }
     }
 
     Congress GetCurrentCongress()
@@ -130,6 +135,10 @@ public class Controller {
         System.out.println("asdasd");
     }
 
+    public void onEliminarSettingsButtonClicked(MouseEvent event){
+
+    }
+
     public void ondataBaseFileClicked(MouseEvent event){
         JFileChooser saveDataBase = new JFileChooser();
         saveDataBase.showSaveDialog(null);
@@ -194,15 +203,7 @@ public class Controller {
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
-        limitConferenceLabel.setVisible(false);
-        for(int j = 0 ; j < 10 ; j ++){
-            llenarLista[j] = " ";
-            //limitConferenceLabel.setVisible(true);
-        }
-        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
-        comBoxConference.setItems(lista);
-        comoBoxCheckList.setItems(lista);
-        comboBoxSettings.setItems(lista);
+        UpdateComboBoxes();
     }
 
     //metodo para el boton de resumir
@@ -223,12 +224,8 @@ public class Controller {
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
-        limitConferenceLabel.setVisible(false);
-        limitConferenceLabelSettings.setVisible(false);
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
-        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
-        comBoxConference.setItems(lista);
     }
 
     public void onHomeButtonClicked(MouseEvent event){
