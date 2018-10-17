@@ -47,9 +47,18 @@ public class Congress implements java.io.Serializable
        return event;
    }
 
-   public void RemoveEvent()
+   public boolean RemoveEvent(String name)
    {
-
+       for(Map.Entry<Byte, Event> eventEntry: EventsSet())
+       {
+            if(eventEntry.getValue().getName() == name)
+            {
+                events.remove(eventEntry.getKey());
+                System.out.println("Deleted: " + name);
+                return true;
+            }
+       }
+       return false;
    }
 
    public Collection<Event> GetAllEvents()

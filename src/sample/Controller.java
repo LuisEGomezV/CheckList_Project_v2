@@ -27,6 +27,8 @@ public class Controller {
     @FXML private AnchorPane fileReportPanel;
     @FXML private AnchorPane listEditPanel;
     @FXML private AnchorPane settingsPanel;
+    @FXML private AnchorPane generarReportePanel;
+    @FXML private AnchorPane guardarPanel;
     @FXML private JFXTextField dataBaseTextField1;
     @FXML private JFXTextField reportTextField1;
     @FXML private JFXTextField dataBaseTextField2;
@@ -36,15 +38,9 @@ public class Controller {
     @FXML private JFXComboBox<String> comBoxConference;
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
-    @FXML private Label limitConferenceLabel;
-    @FXML private Label limitConferenceLabelSettings;
-    @FXML private Label nullValueLabel;
 
     String dataBasePath = new String();
     String reportPath = new String();
-    String llenarLista[]  = new String[10];
-    String llenarListaaux[]  = new String[10];
-    String vacia[] = {" "," "," "," "," "," "," "," "," "," "};
     int i;
 
 
@@ -52,6 +48,33 @@ public class Controller {
     public void onExitButtonClicked(MouseEvent event){
         Platform.exit();
         System.exit(0);
+    }
+
+    public void onGuardarButtonClicked(MouseEvent event){
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(true);
+        startPanel.setVisible(false);
+        newEntryPanel.setVisible(false);
+        resumePanel.setVisible(false);
+        settingsPanel.setVisible(false);
+    }
+    public void onGenerateReportButton(MouseEvent event){
+        generarReportePanel.setVisible(true);
+        guardarPanel.setVisible(false);
+        startPanel.setVisible(false);
+        newEntryPanel.setVisible(false);
+        resumePanel.setVisible(false);
+        settingsPanel.setVisible(false);
+        /*
+        JFileChooser generateReport = new JFileChooser();
+        generateReport.showSaveDialog(null);
+        File fileReport = new File(generateReport.getSelectedFile()+".xlsx");
+        try {
+            BufferedWriter salida1 = new BufferedWriter(new FileWriter(fileReport));
+        }catch(Exception e) {
+
+        }
+        */
     }
 
     Congress GetCurrentCongress()
@@ -93,7 +116,6 @@ public class Controller {
     {
         try
         {
-
             if(GetCurrentCongress() == null)
             {
                 System.out.println("No current congress");
@@ -110,17 +132,16 @@ public class Controller {
         {
             e.printStackTrace();
         }
-
-
     }
 
-    void RemoveEvent(JFXTextField field)
+    void RemoveEvent(JFXComboBox<String> box)
     {
-
+        String name = box.getValue();
+        GetCurrentCongress().RemoveEvent(name);
+        UpdateComboBoxes();
     }
 
     public void onAddButtonSettingsClicked(MouseEvent event){
-
 
         AddEvent(conferenceListSettingsTextField);
     }
@@ -128,6 +149,11 @@ public class Controller {
     public void onEliminarButtonClicked(MouseEvent event)
     {
         System.out.println("asdasd");
+        RemoveEvent(comBoxConference);
+    }
+
+    public void onEliminarSettingsButtonClicked(MouseEvent event){
+        RemoveEvent(comboBoxSettings);
     }
 
     public void ondataBaseFileClicked(MouseEvent event){
@@ -156,6 +182,7 @@ public class Controller {
 
         }
     }
+
     public void onReportFileClicked(MouseEvent event){
         JFileChooser saveReportFile = new JFileChooser();
         saveReportFile.showSaveDialog(null);
@@ -190,19 +217,13 @@ public class Controller {
         settingsPanel.setVisible(false);
         dataBaseTextField1.setDisable(true);
         reportTextField1.setDisable(true);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
-        limitConferenceLabel.setVisible(false);
-        for(int j = 0 ; j < 10 ; j ++){
-            llenarLista[j] = " ";
-            //limitConferenceLabel.setVisible(true);
-        }
-        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
-        comBoxConference.setItems(lista);
-        comoBoxCheckList.setItems(lista);
-        comboBoxSettings.setItems(lista);
+        UpdateComboBoxes();
     }
 
     //metodo para el boton de resumir
@@ -211,6 +232,8 @@ public class Controller {
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
     }
 
     //metodo para el boton de continuar
@@ -219,16 +242,14 @@ public class Controller {
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
         this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
-        limitConferenceLabel.setVisible(false);
-        limitConferenceLabelSettings.setVisible(false);
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
-        ObservableList<String> lista = FXCollections.observableArrayList(vacia);
-        comBoxConference.setItems(lista);
     }
 
     public void onHomeButtonClicked(MouseEvent event){
@@ -263,5 +284,7 @@ public class Controller {
         resumePanel.setVisible(false);
         dataBaseTextField2.setDisable(true);
         reportFileTextField2.setDisable(true);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
     }
 }
