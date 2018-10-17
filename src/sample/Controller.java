@@ -207,16 +207,25 @@ public class Controller {
     }
 
     //metodo para el boton de resumir
-    public void onResumeButtonCliked(MouseEvent event){
+    public void onResumeButtonCliked(MouseEvent event) {
         startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
-        resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
+
+        JFileChooser seleccionarArchivo = new JFileChooser();
+        seleccionarArchivo.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        int resultado = seleccionarArchivo.showOpenDialog(null);
+        File archivo = seleccionarArchivo.getSelectedFile(); // obtiene el archivo seleccionado
+        FileNameExtensionFilter filtro=new FileNameExtensionFilter("con");
+        seleccionarArchivo.setFileFilter(filtro);
+
+        resumePanel.setVisible(true);
+
     }
 
     //metodo para el boton de continuar
     public void onSaveContinueButtonClicked(MouseEvent event){
-        startPanel.setVisible(true);
+        startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);

@@ -297,6 +297,5 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="268.0" prefWidth="394.0" />
    </children>
 </AnchorPane>
