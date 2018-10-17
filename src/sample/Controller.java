@@ -98,7 +98,6 @@ public class Controller {
     {
         try
         {
-
             if(GetCurrentCongress() == null)
             {
                 System.out.println("No current congress");
@@ -115,17 +114,16 @@ public class Controller {
         {
             e.printStackTrace();
         }
-
-
     }
 
-    void RemoveEvent(JFXTextField field)
+    void RemoveEvent(JFXComboBox<String> box)
     {
-
+        String name = box.getValue();
+        GetCurrentCongress().RemoveEvent(name);
+        UpdateComboBoxes();
     }
 
     public void onAddButtonSettingsClicked(MouseEvent event){
-
 
         AddEvent(conferenceListSettingsTextField);
     }
@@ -133,10 +131,11 @@ public class Controller {
     public void onEliminarButtonClicked(MouseEvent event)
     {
         System.out.println("asdasd");
+        RemoveEvent(comBoxConference);
     }
 
     public void onEliminarSettingsButtonClicked(MouseEvent event){
-
+        RemoveEvent(comboBoxSettings);
     }
 
     public void ondataBaseFileClicked(MouseEvent event){
@@ -165,6 +164,7 @@ public class Controller {
 
         }
     }
+
     public void onReportFileClicked(MouseEvent event){
         JFileChooser saveReportFile = new JFileChooser();
         saveReportFile.showSaveDialog(null);
