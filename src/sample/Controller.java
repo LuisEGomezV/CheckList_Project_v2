@@ -80,8 +80,6 @@ public class Controller {
     void AddEvent(JFXTextField field)
     {
         String name = field.getText();
-        System.out.println("num: " + name.length());
-        System.out.println("text: " + name);
         if(name.length() <= 0 || name == "" || name == " ")
             return;
 
@@ -93,10 +91,23 @@ public class Controller {
 
     void UpdateComboBoxes()
     {
-        ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
-        comBoxConference.setItems(list);
-        comoBoxCheckList.setItems(list);
-        comboBoxSettings.setItems(list);
+        try
+        {
+
+            if(GetCurrentCongress() == null)
+                return;
+
+            ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
+            comBoxConference.setItems(list);
+            comoBoxCheckList.setItems(list);
+            comboBoxSettings.setItems(list);
+
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
     }
 
     void RemoveEvent(JFXTextField field)
