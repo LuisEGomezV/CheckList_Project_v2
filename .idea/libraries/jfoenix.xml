@@ -2,6 +2,7 @@
   <library name="jfoenix">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/src/jfoenix.jar!/" />
+      <root url="jar://$USER_HOME$/Desktop/jfoenix.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

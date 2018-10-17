@@ -1,6 +1,9 @@
 package sample;
 
+import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.Congress;
+import com.CongresoCEUAA.FileSystem.ExcelReader;
+import com.CongresoCEUAA.FileSystem.SessionFileSystem;
 import com.CongresoCEUAA.FileSystemTEST;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -28,14 +31,16 @@ public class Controller {
     @FXML private AnchorPane listEditPanel;
     @FXML private AnchorPane settingsPanel;
     @FXML private AnchorPane generarReportePanel;
-    @FXML private AnchorPane guardarPanel;
     @FXML private JFXTextField dataBaseTextField1;
-    @FXML private JFXTextField reportTextField1;
+    @FXML private JFXTextField congressNameTextField;
     @FXML private JFXTextField dataBaseTextField2;
     @FXML private JFXTextField reportFileTextField2;
-    @FXML private JFXTextField conferenceListTextField;
+    @FXML private JFXTextField firtsRow;
+    @FXML private JFXTextField idColum;
+    @FXML private JFXTextField namesColum;
+    @FXML private JFXTextField groupColums;
+    @FXML private JFXTextField idTextField;
     @FXML private JFXTextField conferenceListSettingsTextField;
-    @FXML private JFXComboBox<String> comBoxConference;
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
 
@@ -51,16 +56,21 @@ public class Controller {
     }
 
     public void onGuardarButtonClicked(MouseEvent event){
-        generarReportePanel.setVisible(false);
-        guardarPanel.setVisible(true);
-        startPanel.setVisible(false);
-        newEntryPanel.setVisible(false);
-        resumePanel.setVisible(false);
-        settingsPanel.setVisible(false);
+        JFileChooser save = new JFileChooser();
+        save.showSaveDialog(null);
+
+        //File fileGuardar = new File(save.getSelectedFile()+".con");
+        SessionFileSystem.SaveSession( GetCurrentCongress(),save.getSelectedFile()+".con");
+        /*
+        try {
+            BufferedWriter salida1 = new BufferedWriter(new FileWriter(fileGuardar));
+        }catch(Exception e) {
+
+        }
+        */
     }
     public void onGenerateReportButton(MouseEvent event){
         generarReportePanel.setVisible(true);
-        guardarPanel.setVisible(false);
         startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(false);
@@ -94,11 +104,6 @@ public class Controller {
         return null;
     }
 
-    public void onAddButtonClicked(MouseEvent event){
-
-        AddEvent(conferenceListTextField);
-
-    }
 
     void AddEvent(JFXTextField field)
     {
@@ -106,7 +111,7 @@ public class Controller {
         if(name.length() <= 0 || name == "" || name == " ")
             return;
 
-        GetCurrentCongress().AddEvent(name);
+        GetCurrentCongress().AddEvent(name, null,null);
         field.setText("");
 
         UpdateComboBoxes();
@@ -124,7 +129,6 @@ public class Controller {
 
 
             ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
-            comBoxConference.setItems(list);
             comoBoxCheckList.setItems(list);
             comboBoxSettings.setItems(list);
 
@@ -149,7 +153,6 @@ public class Controller {
     public void onEliminarButtonClicked(MouseEvent event)
     {
         System.out.println("asdasd");
-        RemoveEvent(comBoxConference);
     }
 
     public void onEliminarSettingsButtonClicked(MouseEvent event){
@@ -159,6 +162,15 @@ public class Controller {
     public void ondataBaseFileClicked(MouseEvent event){
         JFileChooser saveDataBase = new JFileChooser();
         saveDataBase.showSaveDialog(null);
+
+      //  AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.xlsx", collectionData); //Se corrige la extension automaticamente
+/*
+        if(atgroup == null) // Si no se generó la lista, retorna null
+        {
+            System.out.println("Lista de asistentes no generada " );
+            return;
+        }
+*/
         File file1 = new File(saveDataBase.getSelectedFile()+".xlsx");
         dataBasePath = saveDataBase.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.dataBaseTextField1.setText(dataBasePath + ".xlsx");
@@ -183,18 +195,7 @@ public class Controller {
         }
     }
 
-    public void onReportFileClicked(MouseEvent event){
-        JFileChooser saveReportFile = new JFileChooser();
-        saveReportFile.showSaveDialog(null);
-        File file2 = new File(saveReportFile.getSelectedFile()+".xlsx");
-        reportPath = saveReportFile.getSelectedFile().getPath();//String que contiene la ruta donde se guarda el reporte
-        this.reportTextField1.setText(reportPath + ".xlsx");
-        try {
-            BufferedWriter salida2 = new BufferedWriter(new FileWriter(file2));
-        }catch(Exception e) {
 
-        }
-    }
 
     public void onReportFileClickedSettings(MouseEvent event){
         JFileChooser saveReportFileSettings = new JFileChooser();
@@ -216,12 +217,9 @@ public class Controller {
         resumePanel.setVisible(false);
         settingsPanel.setVisible(false);
         dataBaseTextField1.setDisable(true);
-        reportTextField1.setDisable(true);
         generarReportePanel.setVisible(false);
-        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
-        this.reportTextField1.setText("");
         this.reportFileTextField2.setText("");
         UpdateComboBoxes();
     }
@@ -233,23 +231,24 @@ public class Controller {
         resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
         generarReportePanel.setVisible(false);
-        guardarPanel.setVisible(false);
     }
 
     //metodo para el boton de continuar
     public void onSaveContinueButtonClicked(MouseEvent event){
         startPanel.setVisible(true);
         newEntryPanel.setVisible(false);
-        resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
         generarReportePanel.setVisible(false);
-        guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.dataBaseTextField2.setText("");
-        this.reportTextField1.setText("");
+        this.congressNameTextField.setText("");
         this.reportFileTextField2.setText("");
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
+
+
+
+        resumePanel.setVisible(true);
     }
 
     public void onHomeButtonClicked(MouseEvent event){
@@ -285,6 +284,5 @@ public class Controller {
         dataBaseTextField2.setDisable(true);
         reportFileTextField2.setDisable(true);
         generarReportePanel.setVisible(false);
-        guardarPanel.setVisible(false);
     }
 }

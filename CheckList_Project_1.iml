@@ -10,67 +10,66 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../jfoenix" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../jfoenix" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../commons_compress" />
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../commons_compress" />
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../commons_compress" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../commons_compress" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../commons_IO" />
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../commons_IO" />
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../commons_IO" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../commons_IO" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../lib" />
+          <root url="file://$USER_HOME$/Desktop/ooxml-lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/ooxml-lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../ooxml-lib" />
+          <root url="file://$USER_HOME$/Desktop/POI" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../ooxml-lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/POI" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../POI" />
+          <root url="file://$USER_HOME$/Desktop/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../POI" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Desktop/jfoenix.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
       </library>
     </orderEntry>
   </component>

@@ -48,19 +48,19 @@ public class FileSystemTEST
         Congress congress = new Congress(atgroup);
 
         //Se agregan eventos (conferencias, talleres, etc.)
-        Event event1  = congress.AddEvent("Conferencia 1");
-        Event event2  = congress.AddEvent("Conferencia 2");
+        //Event event1  = congress.AddEvent("Conferencia 1");
+        //Event event2  = congress.AddEvent("Conferencia 2");
 
 
         currentCongress = congress;
         System.out.println("casdfsdf");
 
         //Se agrega asistencia por medio de ID y con el evento como parametro
-        atgroup.GetAttendant(239935).AddAttendance(event1);
-        atgroup.GetAttendant(234606).AddAttendance(event1);
+        //atgroup.GetAttendant(239935).AddAttendance(event1);
+        //atgroup.GetAttendant(234606).AddAttendance(event1);
 
-        atgroup.GetAttendant(239935).AddAttendance(event2);
-        atgroup.GetAttendant(234606).AddAttendance(event2);
+        //atgroup.GetAttendant(239935).AddAttendance(event2);
+        //atgroup.GetAttendant(234606).AddAttendance(event2);
 
 
         //Se guarda el archivo de congreso para reanudarlo posteriormente

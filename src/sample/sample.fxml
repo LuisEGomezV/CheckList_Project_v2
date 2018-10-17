@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -55,66 +56,89 @@
          <children>
             <AnchorPane layoutX="10.0" layoutY="49.0" prefHeight="541.0" prefWidth="780.0" style="-fx-background-color: #e8eaef;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="762.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="318.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="29.0" />
+                  <AnchorPane prefHeight="447.0" prefWidth="762.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="29.0" />
                   <Label layoutX="9.0" layoutY="7.0" text="Enter location files" AnchorPane.leftAnchor="9.0">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="191.0" prefWidth="760.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="319.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
+                  <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="191.0" prefWidth="760.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <JFXTextField fx:id="dataBaseTextField1" focusColor="#07106e" layoutX="26.0" layoutY="41.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta\database.xlsx">
+                        <JFXTextField fx:id="dataBaseTextField1" focusColor="#07106e" layoutX="14.0" layoutY="223.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta\database.xlsx">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXTextField>
-                        <Label layoutX="14.0" layoutY="14.0" text=" Database file path:">
+                        <Label layoutX="14.0" layoutY="196.0" text=" Database file path:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="reportTextField1" focusColor="#07106e" layoutX="32.0" layoutY="118.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta">
+                        <JFXTextField fx:id="congressNameTextField" focusColor="#07106e" layoutX="23.0" layoutY="333.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </JFXTextField>
-                        <Label layoutX="14.0" layoutY="91.0" text=" Report file path:">
+                        <Label layoutX="14.0" layoutY="303.0" text="Dame el nombre del congreso:">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button layoutX="655.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#ondataBaseFileClicked" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
-                        <Button layoutX="655.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#onReportFileClicked" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
+                        <Button layoutX="660.0" layoutY="224.0" mnemonicParsing="false" onMouseClicked="#ondataBaseFileClicked" prefHeight="35.0" prefWidth="86.0" text="Search" textFill="#07106e" />
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="174.0" text="Fila inicial:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="firtsRow" focusColor="#07106e" layoutX="198.0" layoutY="14.0" maxWidth="726.0" minWidth="52.0" prefHeight="9.0" prefWidth="52.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label layoutX="14.0" layoutY="45.0" prefHeight="36.0" prefWidth="174.0" text="Columna de id:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="idColum" focusColor="#07106e" layoutX="198.0" layoutY="45.0" maxWidth="726.0" minWidth="52.0" prefHeight="9.0" prefWidth="52.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label layoutX="14.0" layoutY="81.0" prefHeight="36.0" prefWidth="184.0" text="Columna de nombres:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="namesColum" focusColor="#07106e" layoutX="198.0" layoutY="81.0" maxWidth="726.0" minWidth="52.0" prefHeight="9.0" prefWidth="52.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label layoutX="14.0" layoutY="117.0" prefHeight="36.0" prefWidth="184.0" text="Columna de grupos:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="groupColums" focusColor="#07106e" layoutX="198.0" layoutY="117.0" maxWidth="726.0" minWidth="52.0" prefHeight="9.0" prefWidth="52.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <Label layoutX="17.0" layoutY="156.0" prefHeight="36.0" prefWidth="275.0" text="Omitir participantes sin asistencia:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXToggleButton layoutX="292.0" layoutY="146.0" mnemonicParsing="false" />
+                        <Label layoutX="45.0" layoutY="266.0" text="Error al crear el archivo" textFill="#e11919">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="9.0" layoutY="257.0" text="Enter the conferences">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <AnchorPane layoutX="9.0" layoutY="270.0" prefHeight="191.0" prefWidth="762.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0">
-                     <children>
-                        <AnchorPane layoutX="10.0" layoutY="4.0" prefHeight="179.0" prefWidth="742.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
-                           <children>
-                              <JFXTextField fx:id="conferenceListTextField" focusColor="#07106e" layoutX="140.0" layoutY="41.0" maxWidth="726.0" minWidth="266.0" prefHeight="36.0" prefWidth="266.0" promptText="ej. Conference 1">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </JFXTextField>
-                              <Label layoutX="14.0" layoutY="14.0" text="Conference list">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <JFXButton layoutX="96.0" layoutY="46.0" onMouseClicked="#onAddButtonClicked" prefHeight="27.0" prefWidth="36.0" text="+" />
-                              <JFXComboBox fx:id="comBoxConference" layoutX="140.0" layoutY="91.0" prefHeight="25.0" prefWidth="266.0" />
-                              <JFXButton layoutX="96.0" layoutY="90.0" onMouseClicked="#onEliminarButtonClicked" prefHeight="27.0" prefWidth="36.0" text="-" />
-                              <Label fx:id="nullValueLabel" layoutX="480.0" layoutY="46.0" prefHeight="27.0" prefWidth="208.0" text="Tienes que ingresar el nombre de la conferencia" textFill="#e10909" visible="false" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-                  <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#onSaveContinueButtonClicked" prefHeight="43.0" prefWidth="118.0" text="Coninue" textFill="#07106e" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="112.0" />
+                  <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#onSaveContinueButtonClicked" prefHeight="43.0" prefWidth="118.0" text="Save &amp;Coninue" textFill="#07106e" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="112.0" />
                   <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="667.0" layoutY="486.0" onMouseClicked="#onHomeButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="60.0">
                      <image>
                         <Image url="@images/icon_Return.png" />
@@ -134,7 +158,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="resumePanel" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="resumePanel" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="10.0" layoutY="49.0" prefHeight="541.0" prefWidth="780.0" style="-fx-background-color: #e8eaef;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
                <children>
@@ -299,10 +323,5 @@
          </children>
       </AnchorPane>
       <AnchorPane fx:id="generarReportePanel" prefHeight="268.0" prefWidth="394.0" style="-fx-background-color: #babec6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <AnchorPane fx:id="guardarPanel" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <JFXTextField />
-            <JFXTextField layoutX="52.0" layoutY="108.0" />
-         </children></AnchorPane>
    </children>
 </AnchorPane>
