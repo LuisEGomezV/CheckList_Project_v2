@@ -23,13 +23,21 @@ public class Attendant implements java.io.Serializable
 
     public boolean AddAttendance(Event event)
     {
+
         for(Attendance att: attendanceList)
         {
+            //Se verifica el pase de lista, para no repetir y para comprobar una tolerancia de + - 15 mins
             if(att.getRelatedEvent() == event.getIndex())
+                return false;
+            if (event.getDate() != att.getDate())
+                return false;
+            if (att.getTime().isAfter(event.getTime().plusMinutes(15)) || att.getTime().isBefore(event.getTime().minusMinutes(15)))
                 return false;
         }
 
-        //Guardar hora y fecha, etc
+
+
+
 
         Attendance attendance = new Attendance(event.getIndex());
 
