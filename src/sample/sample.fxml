@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <AnchorPane fx:id="startPanel" layoutX="-4.0" layoutY="121.0" prefHeight="489.0" prefWidth="800.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="startPanel" layoutX="-4.0" layoutY="121.0" prefHeight="489.0" prefWidth="800.0" style="-fx-background-color: white;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fitHeight="52.0" fitWidth="52.0" layoutX="734.0" layoutY="534.0" onMouseClicked="#onExitButtonClicked" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -51,7 +51,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="newEntryPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="newEntryPanel" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #babec6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane layoutX="10.0" layoutY="49.0" prefHeight="541.0" prefWidth="780.0" style="-fx-background-color: #e8eaef;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="50.0">
                <children>
@@ -63,7 +63,7 @@
                   </Label>
                   <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="191.0" prefWidth="760.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="319.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="30.0">
                      <children>
-                        <JFXTextField focusColor="#07106e" layoutX="26.0" layoutY="41.0" maxWidth="726.0" minWidth="680.0" prefHeight="31.0" prefWidth="726.0" promptText="ej. C:\carpeta\database.xlsx">
+                        <JFXTextField fx:id="dataBaseTextField1" focusColor="#07106e" layoutX="26.0" layoutY="41.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta\database.xlsx">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -73,7 +73,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <JFXTextField focusColor="#07106e" layoutX="32.0" layoutY="118.0" maxWidth="726.0" minWidth="680.0" prefHeight="31.0" prefWidth="726.0" promptText="ej. C:\carpeta">
+                        <JFXTextField fx:id="reportTextField1" focusColor="#07106e" layoutX="32.0" layoutY="118.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -83,6 +83,8 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
+                        <Button layoutX="655.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#ondataBaseFileClicked" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
+                        <Button layoutX="655.0" layoutY="119.0" mnemonicParsing="false" onMouseClicked="#onReportFileClicked" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
                      </children>
                   </AnchorPane>
                   <Label layoutX="9.0" layoutY="257.0" text="Enter the conferences">
@@ -94,7 +96,7 @@
                      <children>
                         <AnchorPane layoutX="10.0" layoutY="4.0" prefHeight="179.0" prefWidth="742.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                            <children>
-                              <JFXTextField focusColor="#07106e" layoutX="140.0" layoutY="41.0" maxWidth="726.0" minWidth="266.0" prefHeight="36.0" prefWidth="266.0" promptText="ej. Conference 1">
+                              <JFXTextField fx:id="conferenceListTextField" focusColor="#07106e" layoutX="140.0" layoutY="41.0" maxWidth="726.0" minWidth="266.0" prefHeight="36.0" prefWidth="266.0" promptText="ej. Conference 1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -104,14 +106,16 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXButton layoutX="96.0" layoutY="46.0" prefHeight="27.0" prefWidth="36.0" text="+" />
-                              <JFXComboBox layoutX="140.0" layoutY="91.0" prefHeight="25.0" prefWidth="266.0" />
-                              <JFXButton layoutX="96.0" layoutY="90.0" prefHeight="27.0" prefWidth="36.0" text="-" />
+                              <JFXButton layoutX="96.0" layoutY="46.0" onMouseClicked="#onAddButtonClicked" prefHeight="27.0" prefWidth="36.0" text="+" />
+                              <JFXComboBox fx:id="comBoxConference" layoutX="140.0" layoutY="91.0" prefHeight="25.0" prefWidth="266.0" />
+                              <JFXButton layoutX="96.0" layoutY="90.0" onMouseClicked="#onEliminarButtonClicked" prefHeight="27.0" prefWidth="36.0" text="-" />
+                              <Label fx:id="limitConferenceLabel" layoutX="480.0" layoutY="90.0" prefHeight="27.0" prefWidth="208.0" text="Haz excedido el limite de conferencias" textFill="#e10909" visible="false" />
+                              <Label fx:id="nullValueLabel" layoutX="480.0" layoutY="46.0" prefHeight="27.0" prefWidth="208.0" text="Tienes que ingresar el nombre de la conferencia" textFill="#e10909" visible="false" />
                            </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#onSaveContinueButtonClicked" prefHeight="43.0" prefWidth="118.0" text="Save &amp; Coninue" textFill="#07106e" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="112.0" />
+                  <Button layoutX="550.0" layoutY="486.0" mnemonicParsing="false" onMouseClicked="#onSaveContinueButtonClicked" prefHeight="43.0" prefWidth="118.0" text="Coninue" textFill="#07106e" AnchorPane.bottomAnchor="11.0" AnchorPane.rightAnchor="112.0" />
                   <ImageView fitHeight="43.0" fitWidth="52.0" layoutX="667.0" layoutY="486.0" onMouseClicked="#onHomeButtonClicked" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="60.0">
                      <image>
                         <Image url="@images/icon_Return.png" />
@@ -149,7 +153,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXComboBox layoutX="307.0" layoutY="198.0" prefHeight="25.0" prefWidth="266.0" />
+                              <JFXComboBox fx:id="comoBoxCheckList" layoutX="307.0" layoutY="198.0" prefHeight="25.0" prefWidth="266.0" />
                               <Label layoutX="14.0" layoutY="41.0" text="registrar su asistencia." AnchorPane.leftAnchor="14.0">
                                  <font>
                                     <Font size="18.0" />
@@ -216,7 +220,7 @@
                      <children>
                         <AnchorPane layoutX="10.0" layoutY="4.0" prefHeight="179.0" prefWidth="742.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                            <children>
-                              <JFXTextField focusColor="#07106e" layoutX="140.0" layoutY="41.0" maxWidth="726.0" minWidth="266.0" prefHeight="36.0" prefWidth="266.0" promptText="ej. Conference 1">
+                              <JFXTextField fx:id="conferenceListSettingsTextField" focusColor="#07106e" layoutX="140.0" layoutY="41.0" maxWidth="726.0" minWidth="266.0" prefHeight="36.0" prefWidth="266.0" promptText="ej. Conference 1">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -226,9 +230,10 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXButton layoutX="96.0" layoutY="46.0" prefHeight="27.0" prefWidth="36.0" text="+" />
-                              <JFXComboBox layoutX="140.0" layoutY="91.0" prefHeight="25.0" prefWidth="266.0" />
+                              <JFXButton layoutX="96.0" layoutY="46.0" onMouseClicked="#onAddButtonSettingsClicked" prefHeight="27.0" prefWidth="36.0" text="+" />
+                              <JFXComboBox fx:id="comboBoxSettings" layoutX="140.0" layoutY="91.0" prefHeight="25.0" prefWidth="266.0" />
                               <JFXButton layoutX="96.0" layoutY="90.0" prefHeight="27.0" prefWidth="36.0" text="-" />
+                              <Label fx:id="limitConferenceLabelSettings" layoutX="484.0" layoutY="90.0" prefHeight="27.0" prefWidth="208.0" text="Haz excedido el limite de conferencias" textFill="#e10909" visible="false" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -238,7 +243,7 @@
                      <children>
                         <AnchorPane layoutX="10.0" layoutY="4.0" prefHeight="179.0" prefWidth="775.0" style="-fx-background-color: #edeff4;" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
                            <children>
-                              <JFXTextField focusColor="#07106e" layoutX="36.0" layoutY="36.0" maxWidth="726.0" minWidth="680.0" prefHeight="31.0" prefWidth="726.0" promptText="ej. C:\carpeta\database.xlsx">
+                              <JFXTextField fx:id="dataBaseTextField2" focusColor="#07106e" layoutX="36.0" layoutY="36.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta\database.xlsx">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -248,7 +253,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <JFXTextField focusColor="#07106e" layoutX="42.0" layoutY="113.0" maxWidth="726.0" minWidth="680.0" prefHeight="31.0" prefWidth="726.0" promptText="ej. C:\carpeta">
+                              <JFXTextField fx:id="reportFileTextField2" focusColor="#07106e" layoutX="42.0" layoutY="113.0" maxWidth="726.0" minWidth="628.0" prefHeight="36.0" prefWidth="628.0" promptText="ej. C:\carpeta">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -258,6 +263,8 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
+                              <Button layoutX="664.0" layoutY="37.0" mnemonicParsing="false" onMouseClicked="#onDataBaseFileClickedSettings" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
+                              <Button layoutX="664.0" layoutY="114.0" mnemonicParsing="false" onMouseClicked="#onReportFileClickedSettings" prefHeight="35.0" prefWidth="86.0" text="Save as" textFill="#07106e" />
                            </children>
                         </AnchorPane>
                      </children>

@@ -2,20 +2,21 @@ package com.CongresoCEUAA;
 
 import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.AttendaceSystem.Event;
+import org.apache.poi.ss.formula.functions.Even;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
 public class Congress implements java.io.Serializable
 {
-
    private String congressName;
 
    private AttendantsList attendants;
 
-
    private TreeMap<Byte, Event> events;
+
    private byte currentEventIndex;
 
    public String getCongressName() {
@@ -49,6 +50,25 @@ public class Congress implements java.io.Serializable
    public void RemoveEvent()
    {
 
+   }
+
+   public Collection<Event> GetAllEvents()
+   {
+      return events.values();
+   }
+
+   public String[] GetAllEventNames()
+   {
+      Collection<Event> allEvents = GetAllEvents();
+      String names[] = new String[allEvents.size()];
+
+      int i=0;
+      for (Event event: allEvents)
+      {
+         names[i++] = event.getName();
+      }
+
+      return names;
    }
 
    public Set<Map.Entry<Byte,Event>> EventsSet()
