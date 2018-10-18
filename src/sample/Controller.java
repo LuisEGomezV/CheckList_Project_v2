@@ -74,6 +74,7 @@ public class Controller implements Initializable {
 
 
     String dataBasePath = new String();
+    String reportPath = new String();
     //String reportPath = new String();
     int i;
     boolean toogleSheetsGroups = false;
@@ -158,9 +159,11 @@ public class Controller implements Initializable {
 
     public void onSearchPathReportClicked(MouseEvent event){
         JFileChooser searchReportPath = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("con files","con");
+        searchReportPath.setFileFilter(filter);
         searchReportPath.showSaveDialog(null);
-        dataBasePath = searchReportPath.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
-        this.dataBaseTextField1.setText(dataBasePath + ".xlsx");
+        reportPath = searchReportPath.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
+        this.reportTextField.setText(reportPath);
     }
 
     //metodo para cerrar la apicacion
@@ -193,7 +196,6 @@ public class Controller implements Initializable {
 
         // reportTextField;
        //nameCongressGenerateReportTextField;
-
 
     }
 
@@ -278,11 +280,12 @@ public class Controller implements Initializable {
     }
 
     public void ondataBaseFileClicked(MouseEvent event){
-        JFileChooser saveDataBase = new JFileChooser();
-        saveDataBase.showSaveDialog(null);
-        //File file1 = new File(saveDataBase.getSelectedFile()+".xlsx");
-        dataBasePath = saveDataBase.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
-        this.dataBaseTextField1.setText(dataBasePath + ".xlsx");
+        JFileChooser openDataBase = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Excel Files","xlsx");
+        openDataBase.setFileFilter(filter);
+        openDataBase.showOpenDialog(null);
+        dataBasePath = openDataBase.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
+        this.dataBaseTextField1.setText(dataBasePath);
         /*
         try {
             BufferedWriter salida1 = new BufferedWriter(new FileWriter(file1));
@@ -350,7 +353,8 @@ public class Controller implements Initializable {
         System.out.println("names: " + data.namesColumn);
         System.out.println("groups: " + data.groupColumn);*/
 
-        String path = "/Users/luisgomez/Desktop/Congreso/TestList.xlsx";
+        //String path = "/Users/luisgomez/Desktop/Congreso/TestLi.xlsx";
+        String path = dataBasePath;
 
         boolean exist = ExcelReader.ExistExcel(path);
         System.out.println("exist: " + exist);
