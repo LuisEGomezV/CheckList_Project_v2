@@ -60,6 +60,7 @@ public class Controller implements Initializable {
     @FXML private JFXComboBox<String> comboBoxSettings;
     @FXML private Label groupLabel;
     @FXML private Label groupColumGenerateReportLabel;
+    @FXML private Label errorLabel;
     @FXML private JFXToggleButton toggleSheetsGroups;
     @FXML private JFXToggleButton toggleSheetsGroupsGenerateReport;
     @FXML private JFXToggleButton toggleSkipAttendance;
@@ -75,6 +76,7 @@ public class Controller implements Initializable {
 
     String dataBasePath = new String();
     String reportPath = new String();
+    String conPath = new String();
     //String reportPath = new String();
     int i;
     boolean toogleSheetsGroups = false;
@@ -161,7 +163,7 @@ public class Controller implements Initializable {
         JFileChooser searchReportPath = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("con files","con");
         searchReportPath.setFileFilter(filter);
-        searchReportPath.showSaveDialog(null);
+        searchReportPath.showOpenDialog(null);
         reportPath = searchReportPath.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.reportTextField.setText(reportPath);
     }
@@ -314,10 +316,16 @@ public class Controller implements Initializable {
     public void onResumeButtonCliked(MouseEvent event){
         startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
-        resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
+        JFileChooser selectCon = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("con files","con");
+        selectCon.setFileFilter(filter);
+        selectCon.showOpenDialog(null);
+        conPath = selectCon.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
+        this.reportTextField.setText(conPath);
+        resumePanel.setVisible(true);
     }
 
     //metodo para el boton de continuar
@@ -361,8 +369,9 @@ public class Controller implements Initializable {
 
         if(!exist)
         {
+            errorLabel.setVisible(true);
             //Mensaje de que no existe el archivo
-            return;
+            //return;
         }
 
         AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile(path, data);
@@ -411,14 +420,6 @@ public class Controller implements Initializable {
         settingsPanel.setVisible(false);
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
-    }
-
-    public void onFileEditClicked(MouseEvent event){
-        if(fileReportPanel.isVisible()){
-            fileReportPanel.setVisible(false);
-            return;
-        }
-        fileReportPanel.setVisible(true);
     }
 
     public void onListEditClicked(MouseEvent event){
