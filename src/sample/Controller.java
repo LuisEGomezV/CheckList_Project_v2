@@ -13,7 +13,10 @@ import com.CongresoCEUAA.FileSystemTEST;
 import com.CongresoCEUAA.SessionManager;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import com.jfoenix.controls.JFXToggleButton;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -55,6 +58,11 @@ public class Controller implements Initializable {
     @FXML private JFXTextField groupColumTextField;
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
+    @FXML private Label groupLabel;
+    @FXML private Label groupColumGenerateReportLabel;
+    @FXML private JFXToggleButton toggleSheetsGroups;
+    @FXML private JFXToggleButton toggleSheetsGroupsGenerateReport;
+    @FXML private JFXToggleButton toggleSkipAttendance;
 
     //Text fields de la ventana generar reporte
     @FXML private JFXTextField firtsRowGenerateReportTextField;
@@ -68,7 +76,8 @@ public class Controller implements Initializable {
     String dataBasePath = new String();
     //String reportPath = new String();
     int i;
-
+    boolean toogleSheetsGroups = false;
+    boolean skipAttendance = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,6 +91,50 @@ public class Controller implements Initializable {
         idColumTextField.setText("0");
         nameColumTextField.setText("1");
         groupColumTextField.setText("2");
+
+        toggleSheetsGroups.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(toggleSheetsGroups.isSelected() == true ){
+                    groupLabel.setVisible(false);
+                    groupColumTextField.setVisible(false);
+                    toogleSheetsGroups = false;
+                }
+                else{
+                    groupLabel.setVisible(true);
+                    groupColumTextField.setVisible(true);
+                    toogleSheetsGroups = true;
+                }
+            }
+        });
+
+        toggleSheetsGroupsGenerateReport.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(toggleSheetsGroupsGenerateReport.isSelected() == true){
+                    groupColumGenerateReportLabel.setVisible(false);
+                    groupColumGenerateReportTextField.setVisible(false);
+                    toogleSheetsGroups = false;
+                }
+                else{
+                    groupColumGenerateReportLabel.setVisible(true);
+                    groupColumGenerateReportTextField.setVisible(true);
+                    toogleSheetsGroups = true;
+                }
+            }
+        });
+
+        toggleSkipAttendance.selectedProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                if(toogleSheetsGroups == true){
+                    skipAttendance = true;
+                }
+                else{
+                    skipAttendance = false;
+                }
+            }
+        });
     }
 
     public void onSaveContinueGenerateReportButtonClicked(MouseEvent event)
