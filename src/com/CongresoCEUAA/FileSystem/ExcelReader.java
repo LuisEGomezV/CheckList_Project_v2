@@ -80,6 +80,38 @@ public class ExcelReader extends ExcelFileSystem
         return attendants;
     }
 
+    public static boolean ExistExcel(String path)
+    {
+        FileInputStream file = null;
+        AttendantsList attendants = null;
+        try
+        {
+            path = VerifyPath(path);
+
+            file = new FileInputStream(path);
+            XSSFWorkbook workBook = new XSSFWorkbook(file);
+
+
+
+        }
+        catch (Exception i)
+        {
+            return false;
+
+        }
+        finally
+        {
+            if(file != null)
+            {
+                try{file.close();}
+                catch(IOException i){i.printStackTrace();}
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     static boolean AddStudentFromRow(XSSFRow row, AttendantsList attendants, CollectionData collectionData)
     {
         Integer id = ExtractNumber(row, collectionData.IDsColumn);

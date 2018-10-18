@@ -98,13 +98,14 @@ public class Controller implements Initializable {
                 if(toggleSheetsGroups.isSelected() == true ){
                     groupLabel.setVisible(false);
                     groupColumTextField.setVisible(false);
-                    toogleSheetsGroups = false;
+                    toogleSheetsGroups = true;
                 }
                 else{
                     groupLabel.setVisible(true);
                     groupColumTextField.setVisible(true);
-                    toogleSheetsGroups = true;
+                    toogleSheetsGroups = false;
                 }
+                System.out.println("toggle: " + toogleSheetsGroups);
             }
         });
 
@@ -114,12 +115,12 @@ public class Controller implements Initializable {
                 if(toggleSheetsGroupsGenerateReport.isSelected() == true){
                     groupColumGenerateReportLabel.setVisible(false);
                     groupColumGenerateReportTextField.setVisible(false);
-                    toogleSheetsGroups = false;
+                    toogleSheetsGroups = true;
                 }
                 else{
                     groupColumGenerateReportLabel.setVisible(true);
                     groupColumGenerateReportTextField.setVisible(true);
-                    toogleSheetsGroups = true;
+                    toogleSheetsGroups = false;
                 }
             }
         });
@@ -147,10 +148,10 @@ public class Controller implements Initializable {
         String name = currentCon.getCongressName() + ".con";
 
         ReportData data = GetRWData(ReportData.class, firtsRowGenerateReportTextField.getText(), idColumGenerateReportTextField.getText(),
-                nameColumGenerateReportTextField.getText(), groupColumGenerateReportTextField.getText());
+                nameColumGenerateReportTextField.getText(), groupColumGenerateReportTextField.getText(), toogleSheetsGroups);
 
-        data.skipWhenZeroAttendance = false;
-        data.sheetAsGroup = false;
+        data.skipWhenZeroAttendance = skipAttendance;
+        System.out.println("sheetAsGroup: " + data.sheetAsGroup);
 
         ExcelWriter.GenerateReport(path+name,currentCon,data);
     }
@@ -327,28 +328,40 @@ public class Controller implements Initializable {
         this.nameCongressTextField.setText("");
         //fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
-        /*CollectionData collectionData = new CollectionData();
+
+
         String firtsRowValue = firtsRowTextField.getText();
         String idColumValue = idColumTextField.getText();
         String nameColumValue = nameColumTextField.getText();
         String groupColumValue = groupColumTextField.getText();
-        collectionData.IDsColumn = Integer.parseInt(idColumValue);
-        collectionData.namesColumn = Integer.parseInt(nameColumValue);
-        collectionData.groupColumn= Integer.parseInt(groupColumValue);
-        collectionData.dataStartRow = Integer.parseInt(firtsRowValue);*/
 
-        CollectionData data = GetRWData(CollectionData.class, firtsRowTextField.getText(), idColumTextField.getText(),
-                nameColumTextField.getText(), groupColumTextField.getText());
+        System.out.println("Group Column text: " + groupColumValue);
+
+
+        CollectionData data = GetRWData(CollectionData.class, firtsRowValue, idColumValue,
+                nameColumValue, groupColumValue, toogleSheetsGroups);
 
         data.sheetAsGroup = false;
         data.collectionType = CollectionType.AllSheets;
+        //data.groupColumn = 3;
 
-        System.out.println("start: " + data.dataStartRow);
+        /*System.out.println("start: " + data.dataStartRow);
         System.out.println("ids: " + data.IDsColumn);
         System.out.println("names: " + data.namesColumn);
-        System.out.println("groups: " + data.groupColumn);
+        System.out.println("groups: " + data.groupColumn);*/
 
-        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.xlsx", data);
+        String path = "/Users/luisgomez/Desktop/Congreso/TestLi.xlsx";
+
+        boolean exist = ExcelReader.ExistExcel(path);
+        System.out.println("exist: " + exist);
+
+        if(!exist)
+        {
+            //Mensaje de que no existe el archivo
+            return;
+        }
+
+        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile(path, data);
         if(atgroup == null) // Si no se generó la lista, retorna null
         {
             System.out.println("Lista de asistentes no generada " );
@@ -362,7 +375,7 @@ public class Controller implements Initializable {
         resumePanel.setVisible(true);
     }
 
-    private <T extends FileData> T GetRWData(Class clazz, String firstRow, String IDCol, String nameCol, String groupCol)
+    private <T extends FileData> T GetRWData(Class clazz, String firstRow, String IDCol, String nameCol, String groupCol, boolean sheetASGroup)
     {
         try
         {
@@ -372,7 +385,7 @@ public class Controller implements Initializable {
             data.IDsColumn = Integer.parseInt(IDCol);
             data.namesColumn = Integer.parseInt(nameCol);
             data.groupColumn= Integer.parseInt(groupCol);
-
+            data.sheetAsGroup = sheetASGroup;
 
             return data;
         }
