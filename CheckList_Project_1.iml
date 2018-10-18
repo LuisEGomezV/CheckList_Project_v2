@@ -10,69 +10,63 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" />
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18/apidocs" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" />
+          <root url="file://$USER_HOME$/Desktop/commons_compress" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-compress-1.18" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" />
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-io-2.6/docs" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES>
-          <root url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" />
+          <root url="file://$USER_HOME$/Desktop/commons_IO" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/commons-io-2.6" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/lib" />
+          <root url="file://$USER_HOME$/Desktop/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/ooxml-lib" />
+          <root url="file://$USER_HOME$/Desktop/ooxml-lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/ooxml-lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/ooxml-lib" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0" />
+          <root url="file://$USER_HOME$/Desktop/POI" />
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/IdeaProjects/poi-4.0.0/docs/apidocs" />
-        </JAVADOC>
+        <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/IdeaProjects/poi-4.0.0" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/POI" recursive="false" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/IdeaProjects/jfoenix.jar!/" />
+          <root url="jar://$USER_HOME$/Desktop/jfoenix.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,15 +1,22 @@
 package sample;
 
+import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.Congress;
+import com.CongresoCEUAA.FileSystem.ExcelReader;
+import com.CongresoCEUAA.FileSystem.FilesData.CollectionData;
 import com.CongresoCEUAA.FileSystemTEST;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -18,8 +25,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class Controller {
+public class Controller implements Initializable {
     //declaracion de los paneles
     @FXML private AnchorPane startPanel;
     @FXML private AnchorPane newEntryPanel;
@@ -35,7 +44,11 @@ public class Controller {
     @FXML private JFXTextField reportFileTextField2;
     @FXML private JFXTextField conferenceListTextField;
     @FXML private JFXTextField conferenceListSettingsTextField;
-    @FXML private JFXComboBox<String> comBoxConference;
+    @FXML private JFXTextField idTextField;
+    @FXML private JFXTextField firtsRowTextField;
+    @FXML private JFXTextField idColumTextField;
+    @FXML private JFXTextField nameColumTextField;
+    @FXML private JFXTextField groupColumTextField;
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
 
@@ -43,6 +56,15 @@ public class Controller {
     String reportPath = new String();
     int i;
 
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        firtsRowTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
+        idColumTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
+        nameColumTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
+        groupColumTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
+        dataBaseTextField1.setDisable(true);
+    }
 
     //metodo para cerrar la apicacion
     public void onExitButtonClicked(MouseEvent event){
@@ -94,11 +116,7 @@ public class Controller {
         return null;
     }
 
-    public void onAddButtonClicked(MouseEvent event){
 
-        AddEvent(conferenceListTextField);
-
-    }
 
     void AddEvent(JFXTextField field)
     {
@@ -106,7 +124,7 @@ public class Controller {
         if(name.length() <= 0 || name == "" || name == " ")
             return;
 
-        GetCurrentCongress().AddEvent(name);
+        GetCurrentCongress().AddEvent(name,null,null);
         field.setText("");
 
         UpdateComboBoxes();
@@ -124,7 +142,6 @@ public class Controller {
 
 
             ObservableList<String> list = FXCollections.observableArrayList(GetCurrentCongress().GetAllEventNames());
-            comBoxConference.setItems(list);
             comoBoxCheckList.setItems(list);
             comboBoxSettings.setItems(list);
 
@@ -149,7 +166,6 @@ public class Controller {
     public void onEliminarButtonClicked(MouseEvent event)
     {
         System.out.println("asdasd");
-        RemoveEvent(comBoxConference);
     }
 
     public void onEliminarSettingsButtonClicked(MouseEvent event){
@@ -159,15 +175,16 @@ public class Controller {
     public void ondataBaseFileClicked(MouseEvent event){
         JFileChooser saveDataBase = new JFileChooser();
         saveDataBase.showSaveDialog(null);
-        File file1 = new File(saveDataBase.getSelectedFile()+".xlsx");
+        //File file1 = new File(saveDataBase.getSelectedFile()+".xlsx");
         dataBasePath = saveDataBase.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.dataBaseTextField1.setText(dataBasePath + ".xlsx");
+        /*
         try {
             BufferedWriter salida1 = new BufferedWriter(new FileWriter(file1));
         }catch(Exception e) {
 
         }
-
+        */
     }
 
     public void onDataBaseFileClickedSettings(MouseEvent event){
@@ -178,19 +195,6 @@ public class Controller {
         this.dataBaseTextField2.setText(dataBasePath + ".xlsx");
         try {
             BufferedWriter salida3 = new BufferedWriter(new FileWriter(file3));
-        }catch(Exception e) {
-
-        }
-    }
-
-    public void onReportFileClicked(MouseEvent event){
-        JFileChooser saveReportFile = new JFileChooser();
-        saveReportFile.showSaveDialog(null);
-        File file2 = new File(saveReportFile.getSelectedFile()+".xlsx");
-        reportPath = saveReportFile.getSelectedFile().getPath();//String que contiene la ruta donde se guarda el reporte
-        this.reportTextField1.setText(reportPath + ".xlsx");
-        try {
-            BufferedWriter salida2 = new BufferedWriter(new FileWriter(file2));
         }catch(Exception e) {
 
         }
@@ -238,9 +242,8 @@ public class Controller {
 
     //metodo para el boton de continuar
     public void onSaveContinueButtonClicked(MouseEvent event){
-        startPanel.setVisible(true);
+        startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
-        resumePanel.setVisible(true);
         settingsPanel.setVisible(false);
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
@@ -250,6 +253,22 @@ public class Controller {
         this.reportFileTextField2.setText("");
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
+        CollectionData collectionData = new CollectionData();
+        String firtsRowValue = firtsRowTextField.getText();
+        String idColumValue = idColumTextField.getText();
+        String nameColumValue = nameColumTextField.getText();
+        String groupColumValue = groupColumTextField.getText();
+        collectionData.IDsColumn = Integer.parseInt(idColumValue);
+        collectionData.namesColumn = Integer.parseInt(nameColumValue);
+        collectionData.groupColumn= Integer.parseInt(groupColumValue);
+        collectionData.dataStartRow = Integer.parseInt(firtsRowValue);
+        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("C:/Users/Ana Karen Hernandez/Desktop/Prueba.xlsx", collectionData);
+        if(atgroup == null) // Si no se generó la lista, retorna null
+        {
+            System.out.println("Lista de asistentes no generada " );
+            return;
+        }
+        resumePanel.setVisible(true);
     }
 
     public void onHomeButtonClicked(MouseEvent event){
@@ -287,4 +306,26 @@ public class Controller {
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
     }
+
+    EventHandler<KeyEvent> handlerNumbers = new EventHandler<KeyEvent>(){
+        private boolean willConsume = false;
+
+        @Override
+        public void handle(KeyEvent event) {
+            JFXTextField temp = (JFXTextField) event.getSource();
+            if(willConsume){
+                event.consume();
+            }
+
+            if(!event.getText().matches("[0-9]") && event.getCode() != KeyCode.BACK_SPACE) {
+                if (event.getEventType() == KeyEvent.KEY_PRESSED) {
+                    willConsume = true;
+                } else if (event.getEventType() == KeyEvent.KEY_RELEASED) {
+                    willConsume = false;
+                }
+            }
+        }
+    };
+
+
 }
