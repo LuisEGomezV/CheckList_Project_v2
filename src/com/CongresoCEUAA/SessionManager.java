@@ -6,11 +6,23 @@ public class SessionManager
 {
     //"Congreso" actual
 
-    Congress currentSession;
+    private static Congress currentSession;
 
-    public void NewCongress (AttendantsList Lista)
+
+
+    public static void NewCongress (AttendantsList Lista)
     {
+        if(Lista == null)
+        {
+            System.out.println("Null attendantsList");
+            return;
+        }
+
         currentSession = new Congress (Lista);
+    }
+
+    public static Congress getCurrentSession() {
+        return currentSession;
     }
 }
 

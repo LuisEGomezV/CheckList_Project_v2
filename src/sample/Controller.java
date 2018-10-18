@@ -4,7 +4,10 @@ import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.Congress;
 import com.CongresoCEUAA.FileSystem.ExcelReader;
 import com.CongresoCEUAA.FileSystem.FilesData.CollectionData;
+import com.CongresoCEUAA.FileSystem.FilesData.FileData;
+import com.CongresoCEUAA.FileSystem.SessionFileSystem;
 import com.CongresoCEUAA.FileSystemTEST;
+import com.CongresoCEUAA.SessionManager;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
@@ -64,6 +67,11 @@ public class Controller implements Initializable {
         nameColumTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
         groupColumTextField.addEventFilter(KeyEvent.ANY, handlerNumbers);
         dataBaseTextField1.setDisable(true);
+
+        firtsRowTextField.setText("1");
+        idColumTextField.setText("0");
+        nameColumTextField.setText("1");
+        groupColumTextField.setText("2");
     }
 
     //metodo para cerrar la apicacion
@@ -103,10 +111,12 @@ public class Controller implements Initializable {
     {
         try
         {
-            if(FileSystemTEST.currentCongress == null)
+            /*if(FileSystemTEST.currentCongress == null)
                 System.out.println("No current congress");
 
-            return FileSystemTEST.currentCongress;
+            return FileSystemTEST.currentCongress;*/
+
+            return SessionManager.getCurrentSession();
         }
         catch (Exception e)
         {
@@ -128,6 +138,13 @@ public class Controller implements Initializable {
         field.setText("");
 
         UpdateComboBoxes();
+    }
+
+    void AddAttendance()
+    {
+        String idString = comoBoxCheckList.getValue();
+
+        Integer id;
     }
 
     void UpdateComboBoxes()
@@ -253,7 +270,7 @@ public class Controller implements Initializable {
         this.reportFileTextField2.setText("");
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
-        CollectionData collectionData = new CollectionData();
+        /*CollectionData collectionData = new CollectionData();
         String firtsRowValue = firtsRowTextField.getText();
         String idColumValue = idColumTextField.getText();
         String nameColumValue = nameColumTextField.getText();
@@ -261,14 +278,47 @@ public class Controller implements Initializable {
         collectionData.IDsColumn = Integer.parseInt(idColumValue);
         collectionData.namesColumn = Integer.parseInt(nameColumValue);
         collectionData.groupColumn= Integer.parseInt(groupColumValue);
-        collectionData.dataStartRow = Integer.parseInt(firtsRowValue);
-        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("C:/Users/Ana Karen Hernandez/Desktop/Prueba.xlsx", collectionData);
+        collectionData.dataStartRow = Integer.parseInt(firtsRowValue);*/
+
+        CollectionData data = GetRWData(CollectionData.class, firtsRowTextField.getText(), idColumTextField.getText(),
+                nameColumTextField.getText(), groupColumTextField.getText());
+
+
+        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.xlsx", data);
         if(atgroup == null) // Si no se generó la lista, retorna null
         {
             System.out.println("Lista de asistentes no generada " );
             return;
         }
+
+        SessionManager.NewCongress(atgroup);
+
         resumePanel.setVisible(true);
+    }
+
+    private <T extends FileData> T GetRWData(Class clazz, String firstRow, String IDCol, String nameCol, String groupCol)
+    {
+        try
+        {
+            T data = (T)clazz.newInstance();
+
+            data.dataStartRow = Integer.parseInt(firstRow);
+            data.IDsColumn = Integer.parseInt(IDCol);
+            data.namesColumn = Integer.parseInt(nameCol);
+            data.groupColumn= Integer.parseInt(groupCol);
+
+
+            return data;
+        }
+        catch (InstantiationException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IllegalAccessException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void onHomeButtonClicked(MouseEvent event){

@@ -10,66 +10,72 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/commons_compress" />
+          <root url="jar://$USER_HOME$/Desktop/Excel/jfoenix.jar!/" />
         </CLASSES>
         <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0/docs/apidocs" />
+        </JAVADOC>
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0/ooxml-lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0/ooxml-lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-compress-1.18" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-compress-1.18/apidocs" />
+        </JAVADOC>
         <SOURCES>
-          <root url="file://$USER_HOME$/Desktop/commons_compress" />
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-compress-1.18" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/Desktop/commons_compress" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/commons-compress-1.18" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/commons-compress-1.18" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/commons_IO" />
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-io-2.6" />
         </CLASSES>
-        <JAVADOC />
+        <JAVADOC>
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-io-2.6/docs" />
+        </JAVADOC>
         <SOURCES>
-          <root url="file://$USER_HOME$/Desktop/commons_IO" />
+          <root url="file://$USER_HOME$/Desktop/Excel/commons-io-2.6" />
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/Desktop/commons_IO" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/commons-io-2.6" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/commons-io-2.6" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/lib" />
+          <root url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Desktop/lib" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/ooxml-lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Desktop/ooxml-lib" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$USER_HOME$/Desktop/POI" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$USER_HOME$/Desktop/POI" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/jfoenix.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/Excel/poi-4.0.0/lib" recursive="false" />
       </library>
     </orderEntry>
   </component>
