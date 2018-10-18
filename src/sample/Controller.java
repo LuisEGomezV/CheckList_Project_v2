@@ -42,9 +42,7 @@ public class Controller implements Initializable {
     @FXML private AnchorPane generarReportePanel;
     @FXML private AnchorPane guardarPanel;
     @FXML private JFXTextField dataBaseTextField1;
-    @FXML private JFXTextField reportTextField1;
-    @FXML private JFXTextField dataBaseTextField2;
-    @FXML private JFXTextField reportFileTextField2;
+    @FXML private JFXTextField nameCongressTextField;
     @FXML private JFXTextField conferenceListTextField;
     @FXML private JFXTextField conferenceListSettingsTextField;
     @FXML private JFXTextField idTextField;
@@ -55,8 +53,17 @@ public class Controller implements Initializable {
     @FXML private JFXComboBox<String> comoBoxCheckList;
     @FXML private JFXComboBox<String> comboBoxSettings;
 
+    //Text fields de la ventana generar reporte
+    @FXML private JFXTextField firtsRowGenerateReportTextField;
+    @FXML private JFXTextField idColumGenerateReportTextField;
+    @FXML private JFXTextField nameColumGenerateReportTextField;
+    @FXML private JFXTextField groupColumGenerateReportTextField;
+    @FXML private JFXTextField reportTextField;
+    @FXML private JFXTextField nameCongressGenerateReportTextField;
+
+
     String dataBasePath = new String();
-    String reportPath = new String();
+    //String reportPath = new String();
     int i;
 
 
@@ -72,6 +79,17 @@ public class Controller implements Initializable {
         idColumTextField.setText("0");
         nameColumTextField.setText("1");
         groupColumTextField.setText("2");
+    }
+
+    public void onSaveContinueGenerateReportButtonClicked(MouseEvent event){
+
+    }
+
+    public void onSearchPathReportClicked(MouseEvent event){
+        JFileChooser searchReportPath = new JFileChooser();
+        searchReportPath.showSaveDialog(null);
+        dataBasePath = searchReportPath.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
+        this.dataBaseTextField1.setText(dataBasePath + ".xlsx");
     }
 
     //metodo para cerrar la apicacion
@@ -204,31 +222,6 @@ public class Controller implements Initializable {
         */
     }
 
-    public void onDataBaseFileClickedSettings(MouseEvent event){
-        JFileChooser saveDataBaseSettings = new JFileChooser();
-        saveDataBaseSettings.showSaveDialog(null);
-        File file3 = new File(saveDataBaseSettings.getSelectedFile()+".xlsx");
-        dataBasePath = saveDataBaseSettings.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
-        this.dataBaseTextField2.setText(dataBasePath + ".xlsx");
-        try {
-            BufferedWriter salida3 = new BufferedWriter(new FileWriter(file3));
-        }catch(Exception e) {
-
-        }
-    }
-
-    public void onReportFileClickedSettings(MouseEvent event){
-        JFileChooser saveReportFileSettings = new JFileChooser();
-        saveReportFileSettings.showSaveDialog(null);
-        File file3 = new File(saveReportFileSettings.getSelectedFile()+".xlsx");
-        reportPath = saveReportFileSettings.getSelectedFile().getPath();//String que contiene la ruta donde se guarda el reporte
-        this.reportFileTextField2.setText(reportPath + ".xlsx");
-        try {
-            BufferedWriter salida2 = new BufferedWriter(new FileWriter(file3));
-        }catch(Exception e) {
-
-        }
-    }
     //metodo para el boton de nuevo
     public void onNewButtonCliked(MouseEvent event){
         i = 0;
@@ -237,13 +230,10 @@ public class Controller implements Initializable {
         resumePanel.setVisible(false);
         settingsPanel.setVisible(false);
         dataBaseTextField1.setDisable(true);
-        reportTextField1.setDisable(true);
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
-        this.dataBaseTextField2.setText("");
-        this.reportTextField1.setText("");
-        this.reportFileTextField2.setText("");
+        this.nameCongressTextField.setText("");
         UpdateComboBoxes();
     }
 
@@ -265,9 +255,7 @@ public class Controller implements Initializable {
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
-        this.dataBaseTextField2.setText("");
-        this.reportTextField1.setText("");
-        this.reportFileTextField2.setText("");
+        this.nameCongressTextField.setText("");
         fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
         /*CollectionData collectionData = new CollectionData();
@@ -351,8 +339,6 @@ public class Controller implements Initializable {
         startPanel.setVisible(false);
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(false);
-        dataBaseTextField2.setDisable(true);
-        reportFileTextField2.setDisable(true);
         generarReportePanel.setVisible(false);
         guardarPanel.setVisible(false);
     }
