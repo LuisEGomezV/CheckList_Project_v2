@@ -40,7 +40,7 @@ public class Main extends Application {
         primaryStage.setTitle("Check List");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        FileSystemTEST.mainTest();
+        //FileSystemTEST.mainTest();
     }
 
 

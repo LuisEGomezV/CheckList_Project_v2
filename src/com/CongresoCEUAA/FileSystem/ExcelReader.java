@@ -28,7 +28,17 @@ public class ExcelReader extends ExcelFileSystem
             System.out.println("SheetsNumber: " + workBook.getNumberOfSheets());
             System.out.println("Potential entries: " + potentialEntries);
 
-            attendants = new AttendantsList(potentialEntries);
+            if(potentialEntries <= 0)
+            {
+                System.out.println("No potential entries");
+                attendants = new AttendantsList(10);
+            }
+            else
+            {
+                attendants = new AttendantsList(potentialEntries);
+            }
+
+
 
             if(collectionData.dataStartRow < 0)
                 collectionData.dataStartRow = 0;
@@ -125,6 +135,12 @@ public class ExcelReader extends ExcelFileSystem
 
     static int GetPotentialEntries(XSSFWorkbook workBook, CollectionData collectionData)
     {
+        if(workBook == null)
+        {
+            System.out.println("null workbook");
+            return -1;
+        }
+
         int potentialEntries = 0;
 
         if(collectionData.collectionType == CollectionType.AllSheets)

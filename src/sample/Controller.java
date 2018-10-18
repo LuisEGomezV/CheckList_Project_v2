@@ -2,9 +2,12 @@ package sample;
 
 import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.Congress;
+import com.CongresoCEUAA.FileSystem.CollectionType;
 import com.CongresoCEUAA.FileSystem.ExcelReader;
+import com.CongresoCEUAA.FileSystem.ExcelWriter;
 import com.CongresoCEUAA.FileSystem.FilesData.CollectionData;
 import com.CongresoCEUAA.FileSystem.FilesData.FileData;
+import com.CongresoCEUAA.FileSystem.FilesData.ReportData;
 import com.CongresoCEUAA.FileSystem.SessionFileSystem;
 import com.CongresoCEUAA.FileSystemTEST;
 import com.CongresoCEUAA.SessionManager;
@@ -81,8 +84,22 @@ public class Controller implements Initializable {
         groupColumTextField.setText("2");
     }
 
-    public void onSaveContinueGenerateReportButtonClicked(MouseEvent event){
+    public void onSaveContinueGenerateReportButtonClicked(MouseEvent event)
+    {
+        Congress currentCon = GetCurrentCongress();
+        if(currentCon == null)
+            return;
 
+        String path = "/Users/luisgomez/Desktop/";
+        String name = currentCon.getCongressName() + ".con";
+
+        ReportData data = GetRWData(ReportData.class, firtsRowGenerateReportTextField.getText(), idColumGenerateReportTextField.getText(),
+                nameColumGenerateReportTextField.getText(), groupColumGenerateReportTextField.getText());
+
+        data.skipWhenZeroAttendance = false;
+        data.sheetAsGroup = false;
+
+        ExcelWriter.GenerateReport(path+name,currentCon,data);
     }
 
     public void onSearchPathReportClicked(MouseEvent event){
@@ -113,16 +130,17 @@ public class Controller implements Initializable {
         newEntryPanel.setVisible(false);
         resumePanel.setVisible(false);
         settingsPanel.setVisible(false);
-        /*
-        JFileChooser generateReport = new JFileChooser();
-        generateReport.showSaveDialog(null);
-        File fileReport = new File(generateReport.getSelectedFile()+".xlsx");
-        try {
-            BufferedWriter salida1 = new BufferedWriter(new FileWriter(fileReport));
-        }catch(Exception e) {
 
-        }
-        */
+        firtsRowGenerateReportTextField.setText("1");
+        idColumGenerateReportTextField.setText("0");
+        nameColumGenerateReportTextField.setText("1");
+        groupColumGenerateReportTextField.setText("2");
+
+
+        // reportTextField;
+       //nameCongressGenerateReportTextField;
+
+
     }
 
     Congress GetCurrentCongress()
@@ -143,8 +161,6 @@ public class Controller implements Initializable {
 
         return null;
     }
-
-
 
     void AddEvent(JFXTextField field)
     {
@@ -256,7 +272,7 @@ public class Controller implements Initializable {
         guardarPanel.setVisible(false);
         this.dataBaseTextField1.setText("");
         this.nameCongressTextField.setText("");
-        fileReportPanel.setVisible(false);
+        //fileReportPanel.setVisible(false);
         listEditPanel.setVisible(false);
         /*CollectionData collectionData = new CollectionData();
         String firtsRowValue = firtsRowTextField.getText();
@@ -271,6 +287,13 @@ public class Controller implements Initializable {
         CollectionData data = GetRWData(CollectionData.class, firtsRowTextField.getText(), idColumTextField.getText(),
                 nameColumTextField.getText(), groupColumTextField.getText());
 
+        data.sheetAsGroup = false;
+        data.collectionType = CollectionType.AllSheets;
+
+        System.out.println("start: " + data.dataStartRow);
+        System.out.println("ids: " + data.IDsColumn);
+        System.out.println("names: " + data.namesColumn);
+        System.out.println("groups: " + data.groupColumn);
 
         AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile("/Users/luisgomez/Desktop/Congreso/TestList.xlsx", data);
         if(atgroup == null) // Si no se generó la lista, retorna null
@@ -278,6 +301,8 @@ public class Controller implements Initializable {
             System.out.println("Lista de asistentes no generada " );
             return;
         }
+
+        System.out.println("Attendants: " + atgroup.Count());
 
         SessionManager.NewCongress(atgroup);
 
