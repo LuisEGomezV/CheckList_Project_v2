@@ -7,9 +7,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class ExcelReader extends ExcelFileSystem
 {
@@ -82,33 +85,16 @@ public class ExcelReader extends ExcelFileSystem
 
     public static boolean ExistExcel(String path)
     {
-        FileInputStream file = null;
-        AttendantsList attendants = null;
         try
         {
-            path = VerifyPath(path);
-
-            file = new FileInputStream(path);
-            XSSFWorkbook workBook = new XSSFWorkbook(file);
-
-
-
+            File f = new File(path);
+            return f.exists() && !f.isDirectory();
         }
         catch (Exception i)
         {
-            return false;
+            i.printStackTrace();
 
         }
-        finally
-        {
-            if(file != null)
-            {
-                try{file.close();}
-                catch(IOException i){i.printStackTrace();}
-                return true;
-            }
-        }
-
         return false;
     }
 

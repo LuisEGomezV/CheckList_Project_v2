@@ -350,7 +350,7 @@ public class Controller implements Initializable {
         System.out.println("names: " + data.namesColumn);
         System.out.println("groups: " + data.groupColumn);*/
 
-        String path = "/Users/luisgomez/Desktop/Congreso/TestLi.xlsx";
+        String path = "/Users/luisgomez/Desktop/Congreso/TestList.xlsx";
 
         boolean exist = ExcelReader.ExistExcel(path);
         System.out.println("exist: " + exist);
