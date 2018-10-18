@@ -22,7 +22,7 @@ public class SessionManager
         currentSession = new Congress (Lista);
 
 
-
+        //BORRAR
         //Se agregan eventos (conferencias, talleres, etc.)
         Event event1  = currentSession.AddEvent("Conferencia 1", null, null);
         Event event2  = currentSession.AddEvent("Conferencia 2", null, null);
