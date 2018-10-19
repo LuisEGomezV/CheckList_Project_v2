@@ -1,6 +1,5 @@
 package sample;
-
-import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
+     import com.CongresoCEUAA.AttendaceSystem.AttendantsList;
 import com.CongresoCEUAA.Congress;
 import com.CongresoCEUAA.FileSystem.CollectionType;
 import com.CongresoCEUAA.FileSystem.ExcelReader;
@@ -20,6 +19,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -36,6 +36,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addKeyListener;
 
 public class Controller implements Initializable {
     //declaracion de los paneles
@@ -77,6 +79,7 @@ public class Controller implements Initializable {
     String dataBasePath = new String();
     String reportPath = new String();
     String conPath = new String();
+    String idText = new String();//cadena que contiene el id al tomar lista
     //String reportPath = new String();
     int i;
     boolean toogleSheetsGroups = false;
@@ -141,13 +144,25 @@ public class Controller implements Initializable {
         });
     }
 
+
+
+
+    public void onEnterPressed(final KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
+            idText = idTextField.getText();
+            this.idTextField.setText(null);
+            //System.out.println("Se armo");
+        }
+    }
+
     public void onSaveContinueGenerateReportButtonClicked(MouseEvent event)
     {
         Congress currentCon = GetCurrentCongress();
         if(currentCon == null)
             return;
 
-        String path = "/Users/luisgomez/Desktop/";
+        //String path = "/Users/luisgomez/Desktop/";
+        String path = reportPath;
         String name = currentCon.getCongressName() + ".con";
 
         ReportData data = GetRWData(ReportData.class, firtsRowGenerateReportTextField.getText(), idColumGenerateReportTextField.getText(),
@@ -166,6 +181,12 @@ public class Controller implements Initializable {
         searchReportPath.showOpenDialog(null);
         reportPath = searchReportPath.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.reportTextField.setText(reportPath);
+        generarReportePanel.setVisible(false);
+        guardarPanel.setVisible(false);
+        startPanel.setVisible(false);
+        newEntryPanel.setVisible(false);
+        resumePanel.setVisible(true);
+        settingsPanel.setVisible(false);
     }
 
     //metodo para cerrar la apicacion
@@ -373,19 +394,21 @@ public class Controller implements Initializable {
             //Mensaje de que no existe el archivo
             //return;
         }
+        else{
+            AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile(path, data);
+            if(atgroup == null) // Si no se generó la lista, retorna null
+            {
+                System.out.println("Lista de asistentes no generada " );
+                return;
+            }
 
-        AttendantsList atgroup = ExcelReader.GenerateAttendantsGroupFile(path, data);
-        if(atgroup == null) // Si no se generó la lista, retorna null
-        {
-            System.out.println("Lista de asistentes no generada " );
-            return;
+            System.out.println("Attendants: " + atgroup.Count());
+
+            SessionManager.NewCongress(atgroup);
+
+            resumePanel.setVisible(true);
         }
 
-        System.out.println("Attendants: " + atgroup.Count());
-
-        SessionManager.NewCongress(atgroup);
-
-        resumePanel.setVisible(true);
     }
 
     private <T extends FileData> T GetRWData(Class clazz, String firstRow, String IDCol, String nameCol, String groupCol, boolean sheetASGroup)
