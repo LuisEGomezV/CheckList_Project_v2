@@ -151,7 +151,6 @@ public class Controller implements Initializable {
         if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
             idText = idTextField.getText();
             this.idTextField.setText(null);
-            //System.out.println("Se armo");
         }
     }
 
