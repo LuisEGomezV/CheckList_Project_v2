@@ -146,7 +146,6 @@ public class Controller implements Initializable {
 
 
 
-
     public void onEnterPressed(final KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
             idText = idTextField.getText();
