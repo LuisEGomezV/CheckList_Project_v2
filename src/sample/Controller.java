@@ -346,7 +346,11 @@ public class Controller implements Initializable {
         selectCon.showOpenDialog(null);
         conPath = selectCon.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.reportTextField.setText(conPath);
-        SessionFileSystem.LoadSession(conPath);
+        Congress session = SessionFileSystem.LoadSession(conPath);
+        if(session == null){
+            System.out.println("El archivo no se pudo abrir ");
+        }
+
         resumePanel.setVisible(true);
     }
 

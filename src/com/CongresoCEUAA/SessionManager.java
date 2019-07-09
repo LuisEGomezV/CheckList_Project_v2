@@ -39,6 +39,11 @@ public class SessionManager
     public static Congress getCurrentSession() {
         return currentSession;
     }
+
+    public static Boolean resumirCongreso(Congress congreso){
+        currentSession = congreso;
+        return true;
+    }
 }
 
 
