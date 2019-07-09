@@ -150,6 +150,8 @@ public class Controller implements Initializable {
         if (event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
             idText = idTextField.getText();
             this.idTextField.setText(null);
+            Integer id = Integer.valueOf(idText);
+
         }
     }
 
@@ -344,6 +346,7 @@ public class Controller implements Initializable {
         selectCon.showOpenDialog(null);
         conPath = selectCon.getSelectedFile().getPath();//String que contiene la ruta donde se guarda la base de datos
         this.reportTextField.setText(conPath);
+        SessionFileSystem.LoadSession(conPath);
         resumePanel.setVisible(true);
     }
 
